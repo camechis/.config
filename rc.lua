@@ -98,25 +98,50 @@ end
 
 -- {{{ Tags
 -- Define a tag table which hold all screen tags.
-tags = {}
-for s = 1, screen.count() do
+
+
+
+tags = {
+   settings = {
+     { names  = { "www", "editor", "sts", "terms", "firefox", "fileman", "7", "8", "9" },
+       layout = { layouts[2], layouts[1], layouts[1], layouts[4], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1] }
+     },
+     { names  = { "1",  "2", "3", "4", "5", "6", "7", "8", "9" },
+       layout = { layouts[3], layouts[2], layouts[2], layouts[5], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1] }
+ }}}
+ 
+ for s = 1, screen.count() do
+     tags[s] = awful.tag(tags.settings[s].names, s, tags.settings[s].layout)
+ end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--tags = {}
+--for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    -- tags[s] = awful.tag({ "⢷", "⣨", "⡪", "⣌", "⣪", "⡝"}, s,
-    -- tags[s] = awful.tag({ "¹ term", "´ web", "² files", "© chat", "ê media", "º work" }, s,
-    tags[s] = awful.tag({ "term", "web", "files", "chat", "media", "work" }, s,
-    -- tags[s] = awful.tag({ "¹", "´", "²", "©", "ê", "º" }, s,
-  		       { layouts[2], layouts[1], layouts[2],
- 			  layouts[1], layouts[1], layouts[2]
- 		       })
+ --   	tags[s] = awful.tag({ "term", "web", "files", "chat", "media", "work" }, s,
+ -- 		{ layouts[2], layouts[1], layouts[2], layouts[1], layouts[1], layouts[2] })
     
-    awful.tag.seticon(active_theme .. "/widgets/arch_10x10.png", tags[s][1])
-    awful.tag.seticon(active_theme .. "/widgets/cat.png", tags[s][2])
-    awful.tag.seticon(active_theme .. "/widgets/dish.png", tags[s][3])
-    awful.tag.seticon(active_theme .. "/widgets/mail.png", tags[s][4])
-    awful.tag.seticon(active_theme .. "/widgets/phones.png", tags[s][5])
-    awful.tag.seticon(active_theme .. "/widgets/pacman.png", tags[s][6])
     
-end
+    --awful.tag.seticon(active_theme .. "/widgets/arch_10x10.png", tags[s][1])
+   -- awful.tag.seticon(active_theme .. "/widgets/cat.png", tags[s][2])
+   -- awful.tag.seticon(active_theme .. "/widgets/dish.png", tags[s][3])
+   -- awful.tag.seticon(active_theme .. "/widgets/mail.png", tags[s][4])
+   -- awful.tag.seticon(active_theme .. "/widgets/phones.png", tags[s][5])
+   -- awful.tag.seticon(active_theme .. "/widgets/pacman.png", tags[s][6])
+--end
 
 -- }}}
 
@@ -165,7 +190,7 @@ end
 	}
 
 	mywork = {
-		{ "STS"      , home .. "/tools/springsource3.2-4/sts-3.2.0.RELEASE/STS" },
+		{ "STS"      , "/tools/springsource3.2-4/sts-3.2.0.RELEASE/STS" },
 		{ "Sublime Text"      , "sublime_text" },
 		--{ "Lftp"             , terminal .. " --hold -e lftp" }
 	}
@@ -985,7 +1010,7 @@ awful.rules.rules = {
       properties = { floating = true } }, 
     -- Set Chromium to always map on tags number 2 of screen 1.
     { rule = { class = "Chromium" },
-      properties = { tag = tags[1][2] } },
+      properties = { tag = tags[1][1] } },
     { rule = { class = "VirtualBox" },
       properties = { tag = tags[6] } },
 }
