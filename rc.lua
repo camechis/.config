@@ -920,7 +920,14 @@ globalkeys = awful.util.table.join(
                   awful.util.getdir("cache") .. "/history_eval")
               end),
     -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end)
+    awful.key({ modkey }, "p", function() menubar.show() end),
+    -- Lock Screen
+    awful.key( 
+    	{ "Control", "Mod1"}, 
+    	"l", 
+    	function() 
+    		awful.util.spawn("xscreensaver-command --lock") 
+    	end)
 )
 
 clientkeys = awful.util.table.join(
@@ -1004,15 +1011,13 @@ awful.rules.rules = {
       properties = { floating = true } },
     { rule = { class = "Download" },
       properties = { floating = true } },
-    { rule = { class = "Gimp" },
-      properties = { floating = true } },
+    { rule = { class = "Firefox"},
+      properties = { tag = tags[1][5]} },
     { rule = { class = "ncmpcpp" },
       properties = { floating = true } }, 
     -- Set Chromium to always map on tags number 2 of screen 1.
     { rule = { class = "Chromium" },
       properties = { tag = tags[1][1] } },
-    { rule = { class = "VirtualBox" },
-      properties = { tag = tags[6] } },
 }
 -- }}}
 
@@ -1095,6 +1100,7 @@ function run_once(cmd)
   
   --run_once("nitrogen --restore")
   run_once("nm-applet")
+  run_once("xscreensaver")
   --run_once("dropbox start")
   --run_once("mpd")
   --run_once("google-musicmanager")
