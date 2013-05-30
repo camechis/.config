@@ -52,7 +52,7 @@ active_theme = themes .. "/newblue"
 beautiful.init(active_theme .. "/theme.lua")
 
 -- This is used later as the default terminal and editor to run.
-terminal = "gnome-terminal"
+terminal = "xfce4-terminal"
 editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 gui_editor = "sublime_text"
@@ -104,7 +104,7 @@ end
 tags = {
    settings = {
      { names  = { "www", "editor", "sts", "terms", "firefox", "fileman", "7", "8", "9" },
-       layout = { layouts[2], layouts[1], layouts[1], layouts[4], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1] }
+       layout = { layouts[1], layouts[1], layouts[2], layouts[1], layouts[1], layouts[2], layouts[2], layouts[2], layouts[2] }
      },
      { names  = { "1",  "2", "3", "4", "5", "6", "7", "8", "9" },
        layout = { layouts[3], layouts[2], layouts[2], layouts[5], layouts[1], layouts[1], layouts[1], layouts[1], layouts[1] }
@@ -156,7 +156,7 @@ tags = {
 	myinternet = {
 		{ "Chromium"         , "chromium" },
 		{ "Incognito Window" , "chromium --incognito" },
-		{ "Chromium + dom"   , "chromium --auth-server-whitelist=\"archnet.mil\" --auth-negotiate-delegate-whitelist=\"archnet.mil\" \"$*\"" },
+		{ "Chromium + dom"   , "chromium --auth-server-whitelist=\"*archnet.mil\" --auth-negotiate-delegate-whitelist=\"*archnet.mil\"" },
 		{ "IRC Client"       , chat },
 		--{ "Torrent"          , "transmission-gtk"},
 		--{ "Email"            , "thunderbird" },
@@ -1110,7 +1110,7 @@ function run_once(cmd)
 autorun = true
 autorunApps = 
 {
-	"chromium",
+	"chromium --auth-server-whitelist=\"*archnet.mil\" --auth-negotiate-delegate-whitelist=\"*archnet.mil\"" ,
 }
 if autorun then
         for app = 1, #autorunApps do
